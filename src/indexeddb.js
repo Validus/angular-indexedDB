@@ -6,7 +6,7 @@
 
 'use strict';
 /** unify browser specific implementations */
-var indexedDB = window.indexedDB||window.mozIndexedDB||window.webkitIndexedDB||window.msIndexedDB;
+var indexedDB2 = window.indexedDB||window.mozIndexedDB||window.webkitIndexedDB||window.msIndexedDB;
 var IDBKeyRange=window.IDBKeyRange||window.mozIDBKeyRange||window.webkitIDBKeyRange||window.msIDBKeyRange;
 
 angular.module('xc.indexedDB', []).provider('$indexedDB', function() {
@@ -113,7 +113,7 @@ angular.module('xc.indexedDB', []).provider('$indexedDB', function() {
                 deferred = $q.defer();
                 module.dbPromise = deferred.promise;
 
-                dbReq = indexedDB.open(module.dbName, module.dbVersion || 1);
+                dbReq = indexedDB2.open(module.dbName, module.dbVersion || 1);
                 dbReq.onsuccess = function(e) {
                     module.db = dbReq.result;
                     $rootScope.$apply(function(){
